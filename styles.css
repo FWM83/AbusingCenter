@@ -15,6 +15,8 @@
   --radius-xl: 24px;
   --radius-pill: 999px;
   --nav-height: 72px;
+  --glow-red: 0 0 20px rgba(255, 40, 69, 0.4), 0 0 40px rgba(255, 40, 69, 0.2);
+  --glow-red-strong: 0 0 28px rgba(255, 40, 69, 0.6), 0 0 56px rgba(255, 40, 69, 0.3);
 }
 
 *,
@@ -35,7 +37,68 @@ body {
 
 body {
   min-height: 100vh;
+  position: relative;
 }
+
+/* ——— Tech status bar ——— */
+.tech-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(90deg, rgba(0,0,0,0.85), rgba(20,0,5,0.9), rgba(0,0,0,0.85));
+  border-bottom: 1px solid rgba(255, 40, 69, 0.35);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.tech-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+  margin-right: 0.5rem;
+  animation: tech-pulse 2s ease-in-out infinite;
+}
+@keyframes tech-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.tech-status-item:first-child { color: rgba(0, 255, 136, 0.9); }
+
+/* ——— Tech grid background ——— */
+.tech-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 40, 69, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 40, 69, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.tech-scanline {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  opacity: 0.5;
+}
+main { position: relative; z-index: 1; }
+.site-header { position: relative; z-index: 10; }
+.site-footer { position: relative; z-index: 1; }
 
 img {
   max-width: 100%;
@@ -94,8 +157,14 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 800;
   box-shadow: 0 0 24px rgba(255, 40, 69, 0.7);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.logo:hover .logo-mark {
+  box-shadow: var(--glow-red-strong);
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -230,6 +299,11 @@ a {
     rgba(35, 0, 8, 0.9)
   );
   border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.meta-item:hover {
+  border-color: rgba(255, 40, 69, 0.3);
+  box-shadow: 0 0 16px rgba(255, 40, 69, 0.15);
 }
 
 .meta-label {
@@ -257,6 +331,11 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-panel:hover {
+  border-color: rgba(255, 40, 69, 0.35);
+  box-shadow: var(--shadow-soft), 0 0 30px rgba(255, 40, 69, 0.2);
 }
 
 .hero-panel::before {
@@ -326,6 +405,11 @@ a {
   background: radial-gradient(circle at 15% 0, #32000a, #090910);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.diagram-node:hover {
+  border-color: rgba(255, 40, 69, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 40, 69, 0.2);
 }
 
 .diagram-node .node-label {
@@ -390,12 +474,35 @@ a {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
   transition:
     background 0.18s ease,
     color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease,
     border-color 0.18s ease;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.btn-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-expand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-expand {
+  to {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+  }
 }
 
 .btn-primary {
@@ -407,10 +514,13 @@ a {
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.9),
     0 0 32px rgba(255, 40, 69, 0.9);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-outline {
@@ -454,6 +564,13 @@ a {
   box-shadow:
     0 16px 32px rgba(0, 0, 0, 0.85),
     0 0 18px rgba(88, 101, 242, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-discord:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(88, 101, 242, 0.6);
 }
 
 .section {
@@ -504,6 +621,12 @@ a {
   );
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft), var(--glow-red);
+  border-color: rgba(255, 40, 69, 0.25);
 }
 
 .feature-card h3,
@@ -565,11 +688,17 @@ a {
   font-size: 0.8rem;
   cursor: pointer;
   color: var(--text-muted);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.pricing-toggle .toggle-label:hover {
+  color: #fff;
+  background: rgba(255, 40, 69, 0.1);
 }
 
 .pricing-toggle .toggle-label.active {
   background: rgba(255, 40, 69, 0.2);
   color: #fff;
+  box-shadow: 0 0 16px rgba(255, 40, 69, 0.3);
 }
 
 .pricing-grid {
@@ -675,6 +804,14 @@ a {
   color: inherit;
   cursor: pointer;
   font-size: 0.96rem;
+  transition: background 0.2s ease;
+}
+.faq-question:hover {
+  background: rgba(255, 40, 69, 0.08);
+}
+.faq-item.open .faq-question {
+  background: rgba(255, 40, 69, 0.06);
+  border-bottom: 1px solid rgba(255, 40, 69, 0.2);
 }
 
 .faq-icon {
@@ -799,6 +936,12 @@ a {
 }
 
 @media (max-width: 720px) {
+  .tech-status-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.75rem;
+  }
   .header-inner {
     gap: 0.6rem;
   }

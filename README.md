@@ -1,6 +1,6 @@
-# Secret 2K Marketing Landing (abusingcenter.com)
+# Abusing Center (abusingcenter.com)
 
-Static marketing landing page for the Secret 2K NBA 2K26 packet cheat, deployed at `abusingcenter.com`.
+Static marketing landing page for Abusing Center – NBA 2K26 packet cheat. Deployed at `abusingcenter.com`.
 
 ## Local usage
 
