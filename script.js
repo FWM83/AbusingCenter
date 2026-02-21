@@ -3,6 +3,42 @@ if (window.location.hash === "#community") {
   window.location.replace("https://discord.gg/h9YnxcWYya");
 }
 
+// Setup Diagram modal
+const setupDiagramModal = document.getElementById("setup-diagram-modal");
+const openSetupDiagramBtn = document.getElementById("open-setup-diagram");
+const closeSetupDiagramBtn = document.getElementById("close-setup-diagram");
+
+function openSetupDiagramModal() {
+  if (!setupDiagramModal) return;
+  setupDiagramModal.removeAttribute("hidden");
+  setupDiagramModal.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+  closeSetupDiagramBtn?.focus();
+}
+
+function closeSetupDiagramModal() {
+  if (!setupDiagramModal) return;
+  setupDiagramModal.classList.remove("is-open");
+  setupDiagramModal.setAttribute("hidden", "");
+  document.body.style.overflow = "";
+  openSetupDiagramBtn?.focus();
+}
+
+if (openSetupDiagramBtn && setupDiagramModal) {
+  openSetupDiagramBtn.addEventListener("click", openSetupDiagramModal);
+}
+if (closeSetupDiagramBtn) {
+  closeSetupDiagramBtn.addEventListener("click", closeSetupDiagramModal);
+}
+if (setupDiagramModal) {
+  setupDiagramModal.addEventListener("click", (e) => {
+    if (e.target === setupDiagramModal) closeSetupDiagramModal();
+  });
+  setupDiagramModal.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSetupDiagramModal();
+  });
+}
+
 // Button ripple (tech-style interaction)
 document.querySelectorAll(".btn").forEach((btn) => {
   btn.addEventListener("click", function (e) {

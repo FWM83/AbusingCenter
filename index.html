@@ -68,7 +68,7 @@
             </p>
             <div class="hero-actions">
               <a href="#pricing" class="btn btn-primary">Buy Now</a>
-              <a href="#diagram" class="btn btn-outline">View Setup Diagram</a>
+              <button type="button" class="btn btn-outline" id="open-setup-diagram" aria-controls="setup-diagram-modal">View Setup Diagram</button>
             </div>
             <div class="hero-meta">
               <div class="meta-item">
@@ -409,6 +409,18 @@
         </div>
       </section>
     </main>
+
+    <!-- Setup Diagram Modal -->
+    <div class="modal-overlay" id="setup-diagram-modal" role="dialog" aria-modal="true" aria-labelledby="setup-diagram-title" hidden>
+      <h2 id="setup-diagram-title" class="visually-hidden">Setup Diagram</h2>
+      <div class="modal-setup-diagram">
+        <button type="button" class="modal-close" id="close-setup-diagram" aria-label="Close">CLOSE [X]</button>
+        <div class="modal-diagram-wrap">
+          <img src="setup-diagram.png" alt="Packet bridge setup: modem to PC/laptop to USB-Ethernet to console" class="modal-diagram-img" />
+          <span class="diagram-watermark" aria-hidden="true">Abusing</span>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="container footer-inner">
