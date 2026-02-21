@@ -1,3 +1,8 @@
+// Redirect #community to Discord invite
+if (window.location.hash === "#community") {
+  window.location.replace("https://discord.gg/h9YnxcWYya");
+}
+
 // Button ripple (tech-style interaction)
 document.querySelectorAll(".btn").forEach((btn) => {
   btn.addEventListener("click", function (e) {
