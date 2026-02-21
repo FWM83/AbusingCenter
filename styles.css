@@ -185,6 +185,23 @@ main { position: relative; z-index: 1; }
   vertical-align: middle;
 }
 
+/* Diagonal strip to fully cover old discord.gg watermark */
+.diagram-watermark-cover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140%;
+  height: 28%;
+  transform: translate(-50%, -50%) rotate(-35deg);
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 15, 0.92),
+    rgba(18, 18, 25, 0.94),
+    rgba(10, 10, 15, 0.92)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
 .diagram-watermark {
   position: absolute;
   left: 50%;
@@ -193,10 +210,11 @@ main { position: relative; z-index: 1; }
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 800;
   letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   pointer-events: none;
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
   white-space: nowrap;
 }
 
