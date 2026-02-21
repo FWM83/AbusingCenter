@@ -140,13 +140,13 @@ main { position: relative; z-index: 1; }
 
 .modal-setup-diagram {
   position: relative;
-  max-width: 90vw;
+  max-width: 92vw;
   max-height: 90vh;
   background: #0a0a0f;
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 40, 69, 0.15);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .modal-close {
@@ -169,49 +169,88 @@ main { position: relative; z-index: 1; }
   color: #fff;
 }
 
-.modal-diagram-wrap {
-  position: relative;
-  display: inline-block;
-  max-width: 100%;
-  max-height: 90vh;
+/* Custom setup diagram (replaces image) */
+.custom-diagram {
+  padding: 2.5rem 1.75rem 1.75rem;
+  padding-top: 2.75rem;
 }
-.modal-diagram-img {
-  display: block;
-  max-width: 100%;
-  max-height: 85vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  vertical-align: middle;
+.custom-diagram-intro {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 36rem;
 }
-
-/* Solid diagonal strip – fully opaque so old watermark is not visible */
-.diagram-watermark-cover {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 200%;
-  height: 42%;
-  transform: translate(-50%, -50%) rotate(-35deg);
-  background: #e8e8ec;
-  pointer-events: none;
-  z-index: 1;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+.custom-diagram-note {
+  margin: 1.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
-.diagram-watermark {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-35deg);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  color: rgba(0, 0, 0, 0.45);
+.diagram-flow {
+  margin-bottom: 1.75rem;
+}
+.diagram-flow:last-of-type {
+  margin-bottom: 0;
+}
+.diagram-flow-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-transform: uppercase;
-  pointer-events: none;
-  z-index: 2;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  white-space: nowrap;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.diagram-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.35rem;
+  padding: 1rem 1rem 1.1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.diagram-node-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 5rem;
+  padding: 0.6rem 0.85rem;
+  background: linear-gradient(145deg, rgba(20, 20, 28, 0.95), rgba(12, 0, 8, 0.95));
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.diagram-node-box.diagram-node-pc {
+  border-color: rgba(255, 40, 69, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 40, 69, 0.15);
+}
+.diagram-node-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.diagram-node-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-main);
+}
+.diagram-node-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.diagram-arrow {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  padding: 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.diagram-arrow::after {
+  content: " →";
+  color: rgba(255, 40, 69, 0.8);
+  font-weight: 700;
 }
 
 img {

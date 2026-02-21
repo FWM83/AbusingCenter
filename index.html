@@ -413,13 +413,63 @@
 
     <!-- Setup Diagram Modal -->
     <div class="modal-overlay" id="setup-diagram-modal" role="dialog" aria-modal="true" aria-labelledby="setup-diagram-title" hidden>
-      <h2 id="setup-diagram-title" class="visually-hidden">Setup Diagram</h2>
+      <h2 id="setup-diagram-title" class="visually-hidden">Packet bridge setup diagram</h2>
       <div class="modal-setup-diagram">
         <button type="button" class="modal-close" id="close-setup-diagram" aria-label="Close">CLOSE [X]</button>
-        <div class="modal-diagram-wrap">
-          <img src="setup-diagram.png" alt="Packet bridge setup: modem to PC/laptop to USB-Ethernet to console" class="modal-diagram-img" />
-          <span class="diagram-watermark-cover" aria-hidden="true"></span>
-          <span class="diagram-watermark" aria-hidden="true">Abusing</span>
+        <div class="custom-diagram">
+          <p class="custom-diagram-intro">Packet bridge: your PC or laptop sits between the modem and your console. Abusing Center runs on the PC.</p>
+
+          <section class="diagram-flow" aria-labelledby="diagram-1-title">
+            <h3 id="diagram-1-title" class="diagram-flow-title">PC / Laptop with Ethernet port</h3>
+            <div class="diagram-row">
+              <div class="diagram-node-box">
+                <span class="diagram-node-icon" aria-hidden="true">📡</span>
+                <span class="diagram-node-label">Modem / Router</span>
+              </div>
+              <span class="diagram-arrow" aria-hidden="true">Ethernet</span>
+              <div class="diagram-node-box diagram-node-pc">
+                <span class="diagram-node-icon" aria-hidden="true">💻</span>
+                <span class="diagram-node-label">PC or Laptop</span>
+                <span class="diagram-node-sub">Abusing Center runs here</span>
+              </div>
+              <span class="diagram-arrow" aria-hidden="true">Ethernet</span>
+              <div class="diagram-node-box">
+                <span class="diagram-node-icon" aria-hidden="true">🎮</span>
+                <span class="diagram-node-label">PS5 / Xbox</span>
+                <span class="diagram-node-sub">NBA 2K26</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="diagram-flow" aria-labelledby="diagram-2-title">
+            <h3 id="diagram-2-title" class="diagram-flow-title">Laptop with no Ethernet port</h3>
+            <div class="diagram-row">
+              <div class="diagram-node-box">
+                <span class="diagram-node-icon" aria-hidden="true">📡</span>
+                <span class="diagram-node-label">Modem / Router</span>
+              </div>
+              <span class="diagram-arrow" aria-hidden="true">Ethernet</span>
+              <div class="diagram-node-box diagram-node-adapter">
+                <span class="diagram-node-icon" aria-hidden="true">🔌</span>
+                <span class="diagram-node-label">USB–Ethernet</span>
+                <span class="diagram-node-sub">Adapter</span>
+              </div>
+              <span class="diagram-arrow" aria-hidden="true">USB</span>
+              <div class="diagram-node-box diagram-node-pc">
+                <span class="diagram-node-icon" aria-hidden="true">💻</span>
+                <span class="diagram-node-label">Laptop</span>
+                <span class="diagram-node-sub">Abusing Center runs here</span>
+              </div>
+              <span class="diagram-arrow" aria-hidden="true">Ethernet</span>
+              <div class="diagram-node-box">
+                <span class="diagram-node-icon" aria-hidden="true">🎮</span>
+                <span class="diagram-node-label">PS5 / Xbox</span>
+                <span class="diagram-node-sub">NBA 2K26</span>
+              </div>
+            </div>
+          </section>
+
+          <p class="custom-diagram-note">No Zen, no Titan, no capture card — just a wired bridge and your Windows PC.</p>
         </div>
       </div>
     </div>
