@@ -1,3 +1,14 @@
 {
-  "grants": []
+  "grants": [
+    {
+      "id": "195947410730516480",
+      "expires_at": 5389160702,
+      "sig": "af6671a9840c6952ad62acff4d506fa1e69801984c7793c513b64f0aec60a27a7d67bf6cb1a61722342915e61041d974b35621d9bb1d44aa9f69b0814d12d401"
+    },
+    {
+      "id": "925102410307883078",
+      "expires_at": 1789250759,
+      "sig": "5fcec976fc795078eecac71cfeaa7060d30f17dd24bb410fc5d35bc64a2a7ea600a43629478f273aad1e6474da6031370dde2113258ae6dfd393be73ddb3be02"
+    }
+  ]
 }
